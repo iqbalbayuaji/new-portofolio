@@ -1,13 +1,23 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import About from './components/About'
+import Capabilities from './components/Capabilities'
 import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div style={{ 
+      minHeight: '100vh', 
+      background: 'linear-gradient(135deg, #000000 0%, #0a0a1a 25%, #001a33 50%, #0a0a1a 75%, #000000 100%)',
+      color: '#fff', 
+      margin: 0, 
+      padding: 0 
+    }}>
       <Navbar />
       <Hero />
-      {/* Add more sections here later: About, Projects, Skills, Contact */}
+      <About />
+      <Capabilities />
+      {/* Add more sections here later: Projects, Contact */}
     </div>
   )
 }

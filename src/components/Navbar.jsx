@@ -30,7 +30,7 @@ const Navbar = () => {
           letterSpacing: '0.1em',
           color: '#fff'
         }}>
-          HILMI PORTFOLIO
+          IQBAL PORTFOLIO
         </div>
 
         {/* Desktop Navigation Links */}
@@ -67,7 +67,7 @@ const Navbar = () => {
             transition: 'color 0.3s'
           }} onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
              onMouseLeave={(e) => e.target.style.color = '#fff'}>
-            BLOG
+            CERTIFICATIONS
           </a>
           <a href="#certifications" style={{
             color: '#fff',
@@ -77,7 +77,7 @@ const Navbar = () => {
             transition: 'color 0.3s'
           }} onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
              onMouseLeave={(e) => e.target.style.color = '#fff'}>
-            CERTIFICATIONS
+            HOBBY
           </a>
           
           {/* Language Selector */}

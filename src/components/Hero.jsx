@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentWelcomeIndex, setCurrentWelcomeIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationState, setAnimationState] = useState('enter'); // 'enter', 'visible', 'exit'
 
   const welcomeTexts = [
     'WELCOME',      // English
@@ -29,17 +29,29 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsAnimating(true);
+    const runAnimation = () => {
+      // Step 1: Start from bottom (enter state)
+      setAnimationState('enter');
+      
+      // Step 2: After 50ms, trigger transition to center
       setTimeout(() => {
-        setCurrentWelcomeIndex((prev) => (prev + 1) % welcomeTexts.length);
+        setAnimationState('visible');
+      }, 50);
+      
+      // Step 3: After staying at center for 1.5s, exit to top
+      setTimeout(() => {
+        setAnimationState('exit');
+        
+        // Change text during exit animation (while old text is leaving)
         setTimeout(() => {
-          setIsAnimating(false);
-        }, 100); // Small delay before showing new text
-      }, 500); // Wait for exit animation (0.5s)
-    }, 3500); // Change every 3.5 seconds
-
-    return () => clearInterval(interval);
+          setCurrentWelcomeIndex((prev) => (prev + 1) % welcomeTexts.length);
+          // Immediately restart from bottom
+          runAnimation();
+        }, 600); // After exit animation completes
+      }, 1800); // Reduced from 2800ms to 1800ms
+    };
+    
+    runAnimation();
   }, [welcomeTexts.length]);
 
   // Floating images data (you'll need to replace these with your actual images)
@@ -72,7 +84,7 @@ const Hero = () => {
       alignItems: 'center',
       justifyContent: 'center',
       overflow: 'hidden',
-      background: 'linear-gradient(135deg, #000000 0%, #0a0a1a 25%, #001a33 50%, #0a0a1a 75%, #000000 100%)'
+      background: 'transparent'
     }}>
       {/* Floating Images */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
@@ -139,44 +151,20 @@ const Hero = () => {
           <div 
             key={currentWelcomeIndex}
             style={{
-              animation: isAnimating 
-                ? 'slideOut 0.5s ease-in forwards' 
-                : 'slideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transform: animationState === 'enter' 
+                ? 'translateY(120%)' 
+                : animationState === 'exit' 
+                  ? 'translateY(-120%)' 
+                  : 'translateY(0)',
+              opacity: animationState === 'visible' ? 1 : 0,
+              transition: animationState === 'exit'
+                ? 'transform 0.6s ease-in, opacity 0.6s ease-in'
+                : 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
           >
             {welcomeTexts[currentWelcomeIndex]}
           </div>
         </h1>
-        
-        <style>{`
-          @keyframes slideIn {
-            0% {
-              transform: translateY(-120%);
-              opacity: 0;
-            }
-            // 50% {
-            //   opacity: 0.5;
-            // }
-            100% {
-              transform: translateY(0);
-              opacity: 1;
-            }
-          }
-          
-          @keyframes slideOut {
-            0% {
-              transform: translateY(0);
-              opacity: 1;
-            }
-            // 50% {
-            //   opacity: 0.5;
-            // }
-            100% {
-              transform: translateY(120%);
-              opacity: 0;
-            }
-          }
-        `}</style>
         
         <p style={{
           color: '#9ca3af',
