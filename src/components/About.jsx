@@ -45,7 +45,7 @@ const About = () => {
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
-            }}>about me.dart</span>
+            }}>about.dart</span>
           </h2>
 
           <div style={{

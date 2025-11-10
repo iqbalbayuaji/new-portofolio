@@ -6,14 +6,14 @@ const Hero = () => {
   const [animationState, setAnimationState] = useState('enter'); // 'enter', 'visible', 'exit'
 
   const welcomeTexts = [
-    'WELCOME',      // English
-    'SELAMAT DATANG', // Indonesian
-    'ようこそ',      // Japanese
-    'BIENVENUE',    // French
-    '환영합니다',    // Korean
-    'BIENVENIDO',   // Spanish
-    'WILLKOMMEN',   // German
-    '欢迎',         // Chinese
+    'WELCOME',      
+    'SELAMAT DATANG', 
+    'ようこそ',     
+    'BIENVENUE',    
+    '환영합니다',   
+    'BIENVENIDO',   
+    'WILLKOMMEN',   
+    '欢迎',         
   ];
 
   useEffect(() => {

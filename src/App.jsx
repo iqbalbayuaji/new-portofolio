@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Capabilities from './components/Capabilities'
+import Projects from './components/Projects'
 import './App.css'
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       <Hero />
       <About />
       <Capabilities />
-      {/* Add more sections here later: Projects, Contact */}
+      <Projects />
+      {/* Add more sections here later: Contact */}
     </div>
   )
 }
