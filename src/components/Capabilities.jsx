@@ -1,3 +1,5 @@
+import { VscTerminal } from 'react-icons/vsc';
+
 const Capabilities = () => {
   const capabilities = [
     {
@@ -30,7 +32,7 @@ const Capabilities = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '6rem 1.5rem',
+      padding: '6rem 5rem',
       background: 'rgba(10, 10, 26, 1)',
       margin: 0
     }}>
@@ -46,7 +48,7 @@ const Capabilities = () => {
             marginBottom: '1rem',
             lineHeight: 1,
             display: 'flex',
-            alignItems: 'baseline',
+            alignItems: 'center',
             gap: '0.75rem',
             justifyContent: 'center',
             textAlign: 'center'
@@ -54,18 +56,32 @@ const Capabilities = () => {
             <span style={{
               fontSize: 'clamp(1.25rem, 3vw, 2.25rem)',
               fontWeight: '600',
-              background: 'linear-gradient(to right, #fff, #c9ced6ff)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              lineHeight: 1
-            }}>{'{ }'}</span>
+              lineHeight: 1,
+              display: 'flex',
+              alignItems: 'center'
+            }}>
+              <VscTerminal style={{
+                background: 'linear-gradient(to right, #fff, #c9ced6ff)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fill: 'url(#gradient-capabilities)'
+              }} />
+              <svg width="0" height="0">
+                <defs>
+                  <linearGradient id="gradient-capabilities" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#fff" />
+                    <stop offset="100%" stopColor="#c9ced6ff" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
             <span style={{
               background: 'linear-gradient(to right, #fff, #c9ced6ff)',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
-            }}>capabilities.dart</span>
+            }}>./ capabilities.dart</span>
           </h2>
           <div style={{
             width: '100px',
