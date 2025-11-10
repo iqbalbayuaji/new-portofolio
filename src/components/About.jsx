@@ -1,7 +1,20 @@
+import { useState } from 'react';
+
 const About = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / 20;
+    const y = (e.clientY - rect.top - rect.height / 2) / 20;
+    setMousePosition({ x, y });
+  };
 
   return (
-    <section id="about" style={{
+    <section 
+      id="about" 
+      onMouseMove={handleMouseMove}
+      style={{
       position: 'relative',
       minHeight: 'auto',
       display: 'flex',
@@ -26,7 +39,7 @@ const About = () => {
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
             marginBottom: '2rem',
-            lineHeight: 1,
+            lineHeight: 1.5,
             display: 'flex',
             alignItems: 'baseline',
             gap: '0.75rem'
@@ -87,7 +100,9 @@ const About = () => {
             justifyContent: 'center',
             fontSize: '1.5rem',
             color: '#9ca3af',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+            transition: 'transform 0.1s ease-out'
           }}>
             {/* Replace this with your profile photo */}
             <div style={{ textAlign: 'center' }}>

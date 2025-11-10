@@ -50,12 +50,13 @@ const Projects = () => {
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
             marginBottom: '1rem',
-            lineHeight: 1,
+            lineHeight: 1.2,
             display: 'flex',
             alignItems: 'baseline',
             gap: '0.75rem',
             justifyContent: 'center',
-            textAlign: 'center'
+            textAlign: 'center',
+            // paddingBottom: '0.25rem'
           }}>
             <span style={{
               fontSize: 'clamp(1.25rem, 3vw, 2.25rem)',
@@ -64,7 +65,7 @@ const Projects = () => {
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              lineHeight: 1
+              lineHeight: 1.2
             }}>{'📁'}</span>
             <span style={{
               background: 'linear-gradient(to right, #fff, #c9ced6ff)',
@@ -91,26 +92,33 @@ const Projects = () => {
                 display: 'grid',
                 gridTemplateColumns: '1fr',
                 gap: '2rem',
-                alignItems: 'center'
+                alignItems: 'center',
+                '--image-order': index % 2 === 0 ? 1 : 2,
+                '--content-order': index % 2 === 0 ? 2 : 1
               }}
             >
               {/* Image */}
               <div
+                className="project-image-stack"
                 style={{
                   order: index % 2 === 0 ? 1 : 2,
                   borderRadius: '1rem',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  transition: 'transform 0.3s ease',
+                  overflow: 'visible',
+                  transition: 'all 0.3s ease',
                   cursor: 'pointer',
                   maxWidth: '500px',
-                  margin: index % 2 === 0 ? '0' : '0 0 0 auto'
+                  margin: index % 2 === 0 ? '0' : '0 0 0 auto',
+                  position: 'relative',
+                  transform: index % 2 === 0 ? 'rotate(-2deg)' : 'rotate(2deg)',
+                  backgroundImage: `url(${project.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.02)';
+                  e.currentTarget.style.transform = 'scale(1.05) rotate(0deg)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.transform = index % 2 === 0 ? 'scale(1) rotate(-2deg)' : 'scale(1) rotate(2deg)';
                 }}
               >
                 <img
@@ -119,7 +127,12 @@ const Projects = () => {
                   style={{
                     width: '100%',
                     height: 'auto',
-                    display: 'block'
+                    display: 'block',
+                    borderRadius: '1rem',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    position: 'relative',
+                    zIndex: 3,
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
                   }}
                 />
               </div>
@@ -241,8 +254,8 @@ const Projects = () => {
             style={{
               backgroundColor: 'rgba(96, 165, 250, 0.1)',
               color: '#60a5fa',
-              padding: '1rem 3rem',
-              borderRadius: '0.5rem',
+              padding: '0.7rem 2rem',
+              borderRadius: '4rem',
               fontSize: '1rem',
               fontWeight: '600',
               border: '1px solid rgba(96, 165, 250, 0.3)',
@@ -267,10 +280,39 @@ const Projects = () => {
 
       {/* Responsive Styles */}
       <style>{`
+        .project-item > div {
+          order: 0 !important;
+        }
+
+        .project-image-stack::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 1rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background-image: inherit;
+          background-size: cover;
+          background-position: center;
+          filter: blur(1px) brightness(0.6);
+          z-index: 0;
+          top: 12px;
+          right: -12px;
+          transform: rotate(-2deg);
+        }
+
         @media (min-width: 768px) {
           .project-item {
             grid-template-columns: 1fr 1fr !important;
             gap: 3rem !important;
+          }
+          
+          .project-item > div:first-child {
+            order: var(--image-order) !important;
+          }
+          
+          .project-item > div:last-child {
+            order: var(--content-order) !important;
           }
         }
       `}</style>
