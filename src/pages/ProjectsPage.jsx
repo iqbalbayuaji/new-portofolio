@@ -123,7 +123,7 @@ const ProjectsPage = () => {
           maxWidth: '600px',
           margin: '0 auto'
         }}>
-          A collection of my featured and personal projects. Explore more of my work below!
+          A collection of my projects. Explore more of my work below!
         </p>
       </section>
 

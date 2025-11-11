@@ -78,12 +78,12 @@ const Hero = () => {
 
   // Floating images data (you'll need to replace these with your actual images)
   const floatingImages = [
-    { id: 1, src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400', position: 'top-left', delay: 0, rotation: -2 },
-    { id: 2, src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400', position: 'top-center-left', delay: 0.2, rotation: 5 },
-    { id: 3, src: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400', position: 'bottom-left', delay: 0.4, rotation: -3 },
-    { id: 4, src: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400', position: 'top-right', delay: 0.1, rotation: 2 },
-    { id: 5, src: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400', position: 'top-center-right', delay: 0.3, rotation: -5 },
-    { id: 6, src: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=400', position: 'bottom-right', delay: 0.5, rotation: 6 },
+    { id: 1, src: 'src/assets/images/f_image_1.png', position: 'top-left', delay: 0, rotation: -2 },
+    { id: 2, src: 'src/assets/images/f_image_2.jpg', position: 'top-center-left', delay: 0.2, rotation: 5 },
+    { id: 3, src: 'src/assets/images/f_image_3.jpg', position: 'bottom-left', delay: 0.4, rotation: -3 },
+    { id: 4, src: 'src/assets/images/f_image_4.png', position: 'top-right', delay: 0.1, rotation: 2 },
+    { id: 5, src: 'src/assets/images/f_image_5.jpg', position: 'top-center-right', delay: 0.3, rotation: -5 },
+    { id: 6, src: 'src/assets/images/f_image_6.jpg', position: 'bottom-right', delay: 0.5, rotation: 6 },
   ];
 
   const getPositionStyles = (position) => {

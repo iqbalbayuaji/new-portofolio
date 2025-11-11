@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { PiCertificateFill } from 'react-icons/pi';
 
 const CertificationsPage = () => {
@@ -112,7 +113,7 @@ const CertificationsPage = () => {
           maxWidth: '600px',
           margin: '0 auto'
         }}>
-          A collection of my professional certifications and achievements. Continuous learning and skill development.
+          A collection of my certifications and achievements. Continuous learning and skill development.
         </p>
       </section>
 
@@ -249,8 +250,8 @@ const CertificationsPage = () => {
                       {cert.date}
                     </p>
 
-                    <a
-                      href={cert.link}
+                    <Link
+                      to={`/certifications/${cert.id}`}
                       style={{
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
                         color: '#60a5fa',
@@ -272,7 +273,7 @@ const CertificationsPage = () => {
                       }}
                     >
                       View Details →
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

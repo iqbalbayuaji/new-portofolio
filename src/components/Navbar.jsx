@@ -70,37 +70,6 @@ const Navbar = () => {
              onMouseLeave={(e) => e.target.style.color = '#fff'}>
             CERTIFICATIONS
           </Link>
-          <a href="#blog" style={{
-            color: '#fff',
-            textDecoration: 'none',
-            fontSize: '0.875rem',
-            fontWeight: '500',
-            transition: 'color 0.3s'
-          }} onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
-             onMouseLeave={(e) => e.target.style.color = '#fff'}>
-            HOBBY
-          </a>
-          
-          {/* Language Selector */}
-          <button 
-            onClick={() => setLanguage(language === 'English' ? 'Indonesia' : 'English')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'none',
-              border: 'none',
-              color: '#fff',
-              cursor: 'pointer',
-              fontSize: '0.875rem',
-              transition: 'color 0.3s'
-            }}
-            onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
-            onMouseLeave={(e) => e.target.style.color = '#fff'}
-          >
-            <span>🌐</span>
-            <span>us {language}</span>
-          </button>
         </div>
 
         {/* Mobile Menu Button */}

@@ -102,7 +102,7 @@ const Education = () => {
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              lineHeight: 1
+              lineHeight: 1.2
             }}>./ education.jsx</span>
           </h2>
         </div>

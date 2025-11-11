@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { PiCertificateFill } from 'react-icons/pi';
 
 const Certifications = () => {
@@ -264,8 +265,15 @@ const Certifications = () => {
             </div>
           ))}
         </div>
-        <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <button
+
+        {/* View More Button */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '3rem'
+        }}>
+          <Link
+            to="/certifications"
             style={{
               backgroundColor: 'rgba(96, 165, 250, 0.1)',
               color: '#60a5fa',
@@ -275,7 +283,9 @@ const Certifications = () => {
               fontWeight: '600',
               border: '1px solid rgba(96, 165, 250, 0.3)',
               cursor: 'pointer',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              textDecoration: 'none',
+              display: 'inline-block'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.2)';
@@ -289,13 +299,16 @@ const Certifications = () => {
             }}
           >
             View More
-          </button>
+          </Link>
         </div>
       </div>
 
       {/* Responsive Styles */}
       <style>{`
         @media (max-width: 768px) {
+          #certifications {
+            padding: 3rem 1.5rem !important;
+          }
           #certifications {
             padding: 3rem 1.5rem !important;
           }

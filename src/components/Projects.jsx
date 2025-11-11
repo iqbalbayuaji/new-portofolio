@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { VscFolderOpened } from 'react-icons/vsc';
 
 const Projects = () => {
@@ -265,7 +266,8 @@ const Projects = () => {
 
         {/* View More Button */}
         <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <button
+          <Link
+            to="/projects"
             style={{
               backgroundColor: 'rgba(96, 165, 250, 0.1)',
               color: '#60a5fa',
@@ -275,7 +277,9 @@ const Projects = () => {
               fontWeight: '600',
               border: '1px solid rgba(96, 165, 250, 0.3)',
               cursor: 'pointer',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              textDecoration: 'none',
+              display: 'inline-block'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.2)';
@@ -289,7 +293,7 @@ const Projects = () => {
             }}
           >
             View More
-          </button>
+          </Link>
         </div>
       </div>
 
