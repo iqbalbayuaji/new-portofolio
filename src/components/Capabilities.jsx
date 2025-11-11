@@ -1,6 +1,29 @@
+import { useState, useEffect, useRef } from 'react';
 import { VscTerminal } from 'react-icons/vsc';
 
 const Capabilities = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const capabilities = [
     {
       id: 1,
@@ -26,7 +49,7 @@ const Capabilities = () => {
   ];
 
   return (
-    <section id="capabilities" style={{
+    <section ref={sectionRef} id="capabilities" style={{
       position: 'relative',
       minHeight: 'auto',
       display: 'flex',
@@ -41,7 +64,12 @@ const Capabilities = () => {
         width: '100%'
       }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div style={{ 
+          textAlign: 'center', 
+          marginBottom: '3rem',
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.8s ease-out'
+        }}>
           <h2 style={{
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
@@ -97,7 +125,7 @@ const Capabilities = () => {
           gridTemplateColumns: '1fr',
           gap: '2rem'
         }} className="capabilities-grid">
-          {capabilities.map((capability) => (
+          {capabilities.map((capability, index) => (
             <div
               key={capability.id}
               className="capability-card"
@@ -106,18 +134,26 @@ const Capabilities = () => {
                 padding: '2rem',
                 borderRadius: '1rem',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
-                transition: 'all 0.3s ease',
-                backdropFilter: 'blur(10px)'
+                backdropFilter: 'blur(10px)',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
+                transition: isVisible 
+                  ? 'all 0.3s ease'
+                  : `opacity 1.2s ease-out ${index * 0.15}s, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.15}s`
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(96, 165, 250, 0.1)';
+                if (isVisible) {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(96, 165, 250, 0.1)';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.boxShadow = 'none';
+                if (isVisible) {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
               }}
             >
               {/* Icon */}

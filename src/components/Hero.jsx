@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentWelcomeIndex, setCurrentWelcomeIndex] = useState(0);
   const [animationState, setAnimationState] = useState('enter'); // 'enter', 'visible', 'exit'
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const welcomeTexts = [
     'WELCOME',      
@@ -26,6 +28,26 @@ const Hero = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -76,8 +98,12 @@ const Hero = () => {
     return positions[position] || {};
   };
 
+  const isLeftSide = (position) => {
+    return position.includes('left');
+  };
+
   return (
-    <section id="home" style={{
+    <section ref={sectionRef} id="home" style={{
       position: 'relative',
       minHeight: '100vh',
       display: 'flex',
@@ -88,20 +114,26 @@ const Hero = () => {
     }}>
       {/* Floating Images */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-        {floatingImages.map((img) => (
-          <div
-            key={img.id}
-            style={{
-              position: 'absolute',
-              ...getPositionStyles(img.position),
-              width: '8rem',
-              height: '10rem',
-              opacity: 0.2,
-              transform: `translate(${mousePosition.x * (img.delay + 1)}px, ${mousePosition.y * (img.delay + 1)}px) rotate(${img.rotation}deg) scale(1)`,
-              transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
-              pointerEvents: 'auto',
-              cursor: 'pointer'
-            }}
+        {floatingImages.map((img) => {
+          const fromLeft = isLeftSide(img.position);
+          return (
+            <div
+              key={img.id}
+              style={{
+                position: 'absolute',
+                ...getPositionStyles(img.position),
+                width: '8rem',
+                height: '10rem',
+                opacity: isVisible ? 0.2 : 0,
+                transform: isVisible 
+                  ? `translate(${mousePosition.x * (img.delay + 1)}px, ${mousePosition.y * (img.delay + 1)}px) rotate(${img.rotation}deg) scale(1)`
+                  : fromLeft
+                    ? `translateX(-150%) rotate(${img.rotation}deg)`
+                    : `translateX(150%) rotate(${img.rotation}deg)`,
+                transition: `transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${isVisible ? img.delay : 0}s, opacity 0.6s ease-out ${isVisible ? img.delay : 0}s`,
+                pointerEvents: 'auto',
+                cursor: 'pointer'
+              }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '0.8';
               e.currentTarget.style.transform = `translate(${mousePosition.x * (img.delay + 1)}px, ${mousePosition.y * (img.delay + 1)}px) rotate(${img.rotation}deg) scale(1.15)`;
@@ -128,7 +160,8 @@ const Hero = () => {
               }}
             />
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Main Content */}
@@ -137,7 +170,10 @@ const Hero = () => {
         zIndex: 10,
         textAlign: 'center',
         padding: '0 1.5rem',
-        maxWidth: '80rem'
+        maxWidth: '80rem',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s'
       }}>
         <h1 style={{
           fontSize: 'clamp(2rem, 6vw, 4.5rem)',

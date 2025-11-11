@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BiCodeAlt } from 'react-icons/bi';
 
 const About = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -11,8 +13,28 @@ const About = () => {
     setMousePosition({ x, y });
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section 
+      ref={sectionRef}
       id="about" 
       onMouseMove={handleMouseMove}
       style={{
@@ -35,7 +57,11 @@ const About = () => {
       }} className="about-grid">
         
         {/* Left Side - Text Content */}
-        <div>
+        <div style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateX(0)' : 'translateX(-100px)',
+          transition: 'opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
+        }}>
           <h2 style={{
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
@@ -102,7 +128,10 @@ const About = () => {
           justifyContent: 'center',
           alignItems: 'flex-start',
           paddingTop: '0',
-          paddingLeft: '8rem'
+          paddingLeft: '8rem',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateX(0)' : 'translateX(100px)',
+          transition: 'opacity 0.8s ease-out 0.2s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s'
         }}>
           <div className="about-photo" style={{
             width: '280px',

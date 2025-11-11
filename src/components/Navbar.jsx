@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [language, setLanguage] = useState('English');
@@ -39,7 +40,7 @@ const Navbar = () => {
           alignItems: 'center',
           gap: '2rem'
         }} className="nav-links">
-          <a href="#home" style={{
+          <Link to="/" style={{
             color: '#fff',
             textDecoration: 'none',
             fontSize: '0.875rem',
@@ -48,8 +49,8 @@ const Navbar = () => {
           }} onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
              onMouseLeave={(e) => e.target.style.color = '#fff'}>
             HOME
-          </a>
-          <a href="#project" style={{
+          </Link>
+          <Link to="/projects" style={{
             color: '#fff',
             textDecoration: 'none',
             fontSize: '0.875rem',
@@ -58,8 +59,8 @@ const Navbar = () => {
           }} onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
              onMouseLeave={(e) => e.target.style.color = '#fff'}>
             PROJECT
-          </a>
-          <a href="#blog" style={{
+          </Link>
+          <Link to="/certifications" style={{
             color: '#fff',
             textDecoration: 'none',
             fontSize: '0.875rem',
@@ -68,8 +69,8 @@ const Navbar = () => {
           }} onMouseEnter={(e) => e.target.style.color = '#9ca3af'}
              onMouseLeave={(e) => e.target.style.color = '#fff'}>
             CERTIFICATIONS
-          </a>
-          <a href="#certifications" style={{
+          </Link>
+          <a href="#blog" style={{
             color: '#fff',
             textDecoration: 'none',
             fontSize: '0.875rem',
@@ -127,10 +128,10 @@ const Navbar = () => {
           backgroundColor: 'rgba(0, 0, 0, 0.95)',
           padding: '1rem'
         }} className="mobile-menu">
-          <a href="#home" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }}>HOME</a>
-          <a href="#project" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }}>PROJECT</a>
+          <Link to="/" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }} onClick={() => setIsMenuOpen(false)}>HOME</Link>
+          <Link to="/projects" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }} onClick={() => setIsMenuOpen(false)}>PROJECT</Link>
+          <Link to="/certifications" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }} onClick={() => setIsMenuOpen(false)}>CERTIFICATIONS</Link>
           <a href="#blog" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }}>BLOG</a>
-          <a href="#certifications" style={{ display: 'block', color: '#fff', padding: '0.75rem', textDecoration: 'none' }}>CERTIFICATIONS</a>
         </div>
       )}
 

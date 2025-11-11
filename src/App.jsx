@@ -1,11 +1,9 @@
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Capabilities from './components/Capabilities'
-import Projects from './components/Projects'
-import Education from './components/Education'
-import Certifications from './components/Certifications'
-import Contact from './components/Contact'
+import Home from './pages/Home'
+import ProjectsPage from './pages/ProjectsPage'
+import ProjectDetailPage from './pages/ProjectDetailPage'
+import CertificationsPage from './pages/CertificationsPage'
 import './App.css'
 
 function App() {
@@ -18,13 +16,12 @@ function App() {
       padding: 0 
     }}>
       <Navbar />
-      <Hero />
-      <About />
-      <Education />
-      <Capabilities />
-      <Projects />
-      <Certifications />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:id" element={<ProjectDetailPage />} />
+        <Route path="/certifications" element={<CertificationsPage />} />
+      </Routes>
     </div>
   )
 }

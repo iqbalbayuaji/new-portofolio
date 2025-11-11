@@ -1,9 +1,32 @@
+import { useState, useEffect, useRef } from 'react';
 import { PiGraduationCapFill } from 'react-icons/pi';
 import { HiArrowRight } from 'react-icons/hi2';
 import logoSmkn from '../assets/images/logo-smkn.png';
 import logoMtsn from '../assets/images/logo-mtsn.png';
 
 const Education = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const educations = [
     {
       id: 1,
@@ -15,14 +38,14 @@ const Education = () => {
     {
       id: 2,
       school: 'MTs Negeri 1 Kota Semarang',
-      period: '2019 - 2023',
+      period: '2020 - 2023',
       description: 'Completed middle school education with focus on academic excellence.',
       logo: logoMtsn
     }
   ];
 
   return (
-    <section id="education" style={{
+    <section ref={sectionRef} id="education" style={{
       position: 'relative',
       minHeight: 'auto',
       display: 'flex',
@@ -37,7 +60,11 @@ const Education = () => {
         width: '100%'
       }}>
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ 
+          marginBottom: '3rem',
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.8s ease-out'
+        }}>
           <h2 style={{
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
@@ -88,32 +115,46 @@ const Education = () => {
           maxWidth: '2000px',
           margin: '0 auto'
         }}>
-          {educations.map((edu) => (
-            <div
-              key={edu.id}
-              style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                padding: '2rem',
-                borderRadius: '1rem',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                display: 'grid',
-                gridTemplateColumns: 'auto 1fr auto',
-                gap: '1.5rem',
-                alignItems: 'center',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                e.currentTarget.style.transform = 'translateX(8px)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(96, 165, 250, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.transform = 'translateX(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+          {educations.map((edu, index) => {
+            const fromLeft = index % 2 === 0;
+            return (
+              <div
+                key={edu.id}
+                style={{
+                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                  padding: '2rem',
+                  borderRadius: '1rem',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  display: 'grid',
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible 
+                    ? 'translateX(0)' 
+                    : fromLeft 
+                      ? 'translateX(-100px)' 
+                      : 'translateX(100px)',
+                  transition: isVisible 
+                    ? 'all 0.3s ease'
+                    : `opacity 1.2s ease-out ${index * 0.2}s, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.2}s`,
+                  gridTemplateColumns: 'auto 1fr auto',
+                  gap: '1.5rem',
+                  alignItems: 'center',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  if (isVisible) {
+                    e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+                    e.currentTarget.style.transform = 'translateX(8px)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(96, 165, 250, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (isVisible) {
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.transform = 'translateX(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
             >
               {/* Logo */}
               <div style={{
@@ -165,7 +206,8 @@ const Education = () => {
                 </p>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

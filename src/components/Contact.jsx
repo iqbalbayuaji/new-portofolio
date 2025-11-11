@@ -1,9 +1,32 @@
+import { useState, useEffect, useRef } from 'react';
 import { HiMail } from 'react-icons/hi';
 import { HiArrowRight } from 'react-icons/hi2';
 import { FaLinkedin, FaGithub, FaInstagram, FaDiscord, FaTelegram } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 const Contact = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const socialLinks = [
     {
       id: 1,
@@ -53,7 +76,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" style={{
+    <section ref={sectionRef} id="contact" style={{
       position: 'relative',
       minHeight: 'auto',
       display: 'flex',
@@ -68,7 +91,11 @@ const Contact = () => {
         width: '100%'
       }}>
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ 
+          marginBottom: '3rem',
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.8s ease-out'
+        }}>
           <h2 style={{
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
@@ -116,7 +143,9 @@ const Contact = () => {
           fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
           color: '#d1d5db',
           marginBottom: '3rem',
-          lineHeight: 1.6
+          lineHeight: 1.6,
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.8s ease-out 0.2s'
         }}>
           Feel free to reach out! I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
         </p>
@@ -133,7 +162,10 @@ const Contact = () => {
             padding: '2rem',
             borderRadius: '1rem',
             border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
+            transition: 'opacity 1.2s ease-out 0.4s, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s'
           }}>
             <h3 style={{
               fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',
@@ -219,7 +251,10 @@ const Contact = () => {
             padding: '2rem',
             borderRadius: '1rem',
             border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
+            transition: 'opacity 1.2s ease-out 0.4s, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s'
           }}>
             <h3 style={{
               fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',

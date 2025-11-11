@@ -1,6 +1,29 @@
+import { useState, useEffect, useRef } from 'react';
 import { PiCertificateFill } from 'react-icons/pi';
 
 const Certifications = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const certifications = [
     {
       id: 1,
@@ -35,7 +58,7 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" style={{
+    <section ref={sectionRef} id="certifications" style={{
       position: 'relative',
       minHeight: 'auto',
       display: 'flex',
@@ -50,7 +73,11 @@ const Certifications = () => {
         width: '100%'
       }}>
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ 
+          marginBottom: '3rem',
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.8s ease-out'
+        }}>
           <h2 style={{
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             fontWeight: '500',
@@ -99,7 +126,7 @@ const Certifications = () => {
           gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
           gap: '2rem'
         }}>
-          {certifications.map((cert) => (
+          {certifications.map((cert, index) => (
             <div
               key={cert.id}
               style={{
@@ -108,20 +135,28 @@ const Certifications = () => {
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(10px)',
                 overflow: 'hidden',
-                transition: 'all 0.3s ease',
                 cursor: 'pointer',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
+                transition: isVisible 
+                  ? 'all 0.3s ease'
+                  : `opacity 1.2s ease-out ${index * 0.15}s, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.15}s`
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(96, 165, 250, 0.1)';
+                if (isVisible) {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(96, 165, 250, 0.1)';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.boxShadow = 'none';
+                if (isVisible) {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
               }}
             >
               {/* Certificate Image */}
