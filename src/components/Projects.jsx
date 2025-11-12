@@ -1,36 +1,12 @@
 import { Link } from 'react-router-dom';
 import { VscFolderOpened } from 'react-icons/vsc';
+import { HiExternalLink } from 'react-icons/hi';
+import { HiCodeBracket } from 'react-icons/hi2';
+import { projectsData } from '../data/projectsData';
 
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: 'MuslimTime',
-      description: 'An Islamic-themed web app to read the Qur\'an, listen to recitations, track prayer times, and handle authentication with email verification and OTP. Calm blue palette, Islamic accents, and light/dark theme support.',
-      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Shadcn UI', 'Firebase', 'Nodemailer'],
-      websiteLink: '#',
-      codeLink: '#'
-    },
-    {
-      id: 2,
-      title: 'Project Two',
-      description: 'A modern web application built with cutting-edge technologies. Features include real-time updates, responsive design, and seamless user experience across all devices.',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-      websiteLink: '#',
-      codeLink: '#'
-    },
-    {
-      id: 3,
-      title: 'Project Three',
-      description: 'An innovative mobile-first application designed to solve real-world problems. Built with performance and scalability in mind.',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800',
-      technologies: ['Flutter', 'Firebase', 'GetX'],
-      websiteLink: '#',
-      codeLink: '#'
-    }
-  ];
+  // Show only first 3 projects
+  const projects = projectsData.slice(0, 3);
 
   return (
     <section id="projects" style={{
@@ -229,7 +205,8 @@ const Projects = () => {
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(96, 165, 250, 0.3)';
                     }}
                   >
-                    🔗 Website
+                    <HiExternalLink size={16} />
+                    Website
                   </a>
                   <a
                     href={project.codeLink}
@@ -256,7 +233,8 @@ const Projects = () => {
                       e.currentTarget.style.transform = 'translateY(0)';
                     }}
                   >
-                    💻 View Code
+                    <HiCodeBracket size={16} />
+                    View Code
                   </a>
                 </div>
               </div>

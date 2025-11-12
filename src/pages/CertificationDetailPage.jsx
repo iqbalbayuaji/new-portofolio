@@ -308,32 +308,30 @@ const CertificationDetailPage = () => {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              backgroundColor: 'rgba(96, 165, 250, 0.1)',
-              color: '#60a5fa',
-              padding: '0.7rem 1.5rem',
-              borderRadius: '0.75rem',
+              gap: '0.5rem',
+              backgroundColor: '#60a5fa',
+              color: '#fff',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '0.5rem',
               fontSize: '1rem',
               fontWeight: '600',
+              border: 'none',
               textDecoration: 'none',
-              border: '2px solid rgba(96, 165, 250, 0.3)',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(96, 165, 250, 0.3)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.2)';
-              e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.5)';
+              e.currentTarget.style.backgroundColor = '#3b82f6';
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(96, 165, 250, 0.2)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(96, 165, 250, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)';
-              e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+              e.currentTarget.style.backgroundColor = '#60a5fa';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(96, 165, 250, 0.3)';
             }}
           >
-            <HiExternalLink size={22} />
+            <HiExternalLink size={20} />
             View on Google Drive
           </a>
         </div>

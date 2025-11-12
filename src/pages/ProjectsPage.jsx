@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { VscFolderOpened } from 'react-icons/vsc';
+import { projectsData } from '../data/projectsData';
 
 const ProjectsPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,78 +26,7 @@ const ProjectsPage = () => {
     };
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: 'MuslimTime',
-      description: 'An Islamic-themed web app to read the Qur\'an, listen to recitations, track prayer times, and handle authentication with email verification and OTP.',
-      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
-      category: 'Web Development',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-      date: '10/30/2024',
-      status: 'Live',
-      link: '#'
-    },
-    {
-      id: 2,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce platform with product management, shopping cart, and payment integration.',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800',
-      category: 'Web Development',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      date: '09/15/2024',
-      status: 'Development',
-      link: '#'
-    },
-    {
-      id: 3,
-      title: 'Task Management App',
-      description: 'A mobile-first task management application with real-time collaboration features.',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800',
-      category: 'Mobile Development',
-      technologies: ['Flutter', 'Firebase', 'GetX'],
-      date: '08/22/2024',
-      status: 'Live',
-      link: '#'
-    },
-    {
-      id: 4,
-      title: 'Portfolio Website',
-      description: 'A modern and responsive portfolio website showcasing projects and skills.',
-      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800',
-      category: 'Web Development',
-      technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
-      date: '07/10/2024',
-      status: 'Live',
-      link: '#'
-    },
-    {
-      id: 5,
-      title: 'Weather Dashboard',
-      description: 'A weather dashboard with real-time data visualization and forecasting.',
-      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800',
-      category: 'Web Development',
-      technologies: ['React', 'Chart.js', 'OpenWeather API'],
-      date: '06/05/2024',
-      status: 'Development',
-      link: '#'
-    },
-    {
-      id: 6,
-      title: 'Social Media App',
-      description: 'A social media application with posts, comments, likes, and real-time notifications.',
-      image: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=800',
-      category: 'Mobile Development',
-      technologies: ['React Native', 'Firebase', 'Redux'],
-      date: '05/18/2024',
-      status: 'Live',
-      link: '#'
-    }
-  ];
-
-  const getStatusColor = (status) => {
-    return status === 'Live' ? '#10b981' : '#f59e0b';
-  };
+  const projects = projectsData;
 
   return (
     <div style={{
