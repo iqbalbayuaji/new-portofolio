@@ -109,7 +109,7 @@ const About = () => {
             marginBottom: '2rem'
           }}>
             <p style={{ marginBottom: '1.5rem' }}>
-              Hi! I'm <strong style={{ color: '#fff' }}>Muhammad Iqbal Bayuaji</strong>, I am a vocational high school student at SMKN 8 Semarang majoring in Software Engineering, with a strong interest and foundational skills in <strong style={{ color: '#fff' }}>Mobile Application</strong> and <strong style={{ color: '#fff' }}>Front-End Web Development</strong>. I am passionate about learning new technologies and taking on real-world challenges. Through school projects and independent learning, I have gained practical experience in Front-End Web Development, Mobile development, and project collaboration.
+              Hi! I'm <strong style={{ color: '#fff' }}>Muhammad Iqbal Bayuaji</strong>, I am a vocational high school student at SMKN 8 Semarang majoring in Software Engineering, with a strong interest and foundational skills in <strong style={{ color: '#fff' }}>Mobile Apps Development</strong> and <strong style={{ color: '#fff' }}>Front-End Web Development</strong>. I am passionate about learning new technologies and taking on real-world challenges. Through school projects and independent learning, I have gained practical experience in Front-End Web Development, Mobile development, and project collaboration.
             </p>
           </div>
 

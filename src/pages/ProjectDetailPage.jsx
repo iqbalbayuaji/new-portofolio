@@ -409,6 +409,7 @@ const ProjectDetailPage = () => {
             <HiExternalLink size={20} />
             View Project
           </a>
+          {project.category !== 'UI/UX' && (
           <a
             href={project.codeLink}
             target="_blank"
@@ -439,6 +440,7 @@ const ProjectDetailPage = () => {
             <HiCodeBracket size={20} />
             View Code
           </a>
+          )}
         </div>
       </div>
     </div>

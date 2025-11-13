@@ -100,12 +100,12 @@ export const projectsData = [
       '/images/rky_1.png',
       '/images/rky_2.png'
     ],
-    category: 'Website Development',
+    category: 'UI/UX',
     technologies: ['React', 'Tailwindcss', 'Figma'],
     date: '18/07/2025',
     type: 'Team',
     link: '#',
-    websiteLink: '#',
+    websiteLink: 'https://www.figma.com/design/pLO276g9uhJEFcLSJF7Rrr/IDTC?node-id=0-1&t=AQ1JJ7i10mtZ3bGA-1',
     codeLink: '#',
     role: 'UI/UX',
     responsibilities: [
@@ -130,7 +130,7 @@ export const projectsData = [
     date: '20/04/2025',
     type: 'Team',
     link: '#',
-    websiteLink: '#',
+    websiteLink: 'https://www.figma.com/design/BZ0OEkDdlI2kxqUaM8iJkI/UI-UX-GENETIC?node-id=180-22&t=OZ7Va8HL57YDr4nL-1',
     codeLink: '#',
     role: 'UI/UX',
     responsibilities: [
