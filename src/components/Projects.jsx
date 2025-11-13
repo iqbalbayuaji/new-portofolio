@@ -206,7 +206,7 @@ const Projects = () => {
                     }}
                   >
                     <HiExternalLink size={16} />
-                    Website
+                    View Project
                   </a>
                   <a
                     href={project.codeLink}

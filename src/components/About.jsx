@@ -149,7 +149,7 @@ const About = () => {
             transition: 'transform 0.1s ease-out'
           }}>
             <img 
-              src="/images/m_image.jpg" 
+              src="src/assets/images/m_image.jpg" 
               alt="Muhammad Iqbal Bayuaji"
               style={{
                 width: '100%',

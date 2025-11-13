@@ -78,12 +78,12 @@ const Hero = () => {
 
   // Floating images data (you'll need to replace these with your actual images)
   const floatingImages = [
-    { id: 1, src: '/images/f_image_1.png', position: 'top-left', delay: 0, rotation: -2 },
-    { id: 2, src: '/images/f_image_2.jpg', position: 'top-center-left', delay: 0.2, rotation: 5 },
-    { id: 3, src: '/images/f_image_3.jpg', position: 'bottom-left', delay: 0.4, rotation: -3 },
-    { id: 4, src: '/images/f_image_4.png', position: 'top-right', delay: 0.1, rotation: 2 },
-    { id: 5, src: '/images/f_image_5.jpg', position: 'top-center-right', delay: 0.3, rotation: -5 },
-    { id: 6, src: '/images/f_image_6.jpg', position: 'bottom-right', delay: 0.5, rotation: 6 },
+    { id: 1, src: 'src/assets/images/f_image_1.png', position: 'top-left', delay: 0, rotation: -2 },
+    { id: 2, src: 'src/assets/images/f_image_2.jpg', position: 'top-center-left', delay: 0.2, rotation: 5 },
+    { id: 3, src: 'src/assets/images/f_image_3.jpg', position: 'bottom-left', delay: 0.4, rotation: -3 },
+    { id: 4, src: 'src/assets/images/f_image_4.png', position: 'top-right', delay: 0.1, rotation: 2 },
+    { id: 5, src: 'src/assets/images/f_image_5.jpg', position: 'top-center-right', delay: 0.3, rotation: -5 },
+    { id: 6, src: 'src/assets/images/f_image_6.JPG', position: 'bottom-right', delay: 0.5, rotation: 6 },
   ];
 
   const getPositionStyles = (position) => {
