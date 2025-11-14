@@ -1,79 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { HiExternalLink, HiOutlineBadgeCheck } from 'react-icons/hi';
+import { certificationsData } from '../data/certificationsData';
 
 const CertificationDetailPage = () => {
   const { id } = useParams();
 
   // Certification data - in a real app, this would come from an API or context
-  const certifications = [
-    {
-      id: 1,
-      title: 'AI Productivity and AI API Integration for Developers',
-      organizer: 'Hacktiv8',
-      date: '10/30/2024',
-      type: 'Programming',
-      description: 'This comprehensive certification program covers AI productivity tools and API integration techniques for modern developers. The course includes hands-on projects with various AI APIs, best practices for integrating AI services into applications, and strategies for leveraging AI to enhance developer productivity. Participants learn to work with popular AI platforms, implement natural language processing, and build intelligent applications.',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-      credentialCode: 'HAC-AI-2024-001234',
-      credentialUrl: '#'
-    },
-    {
-      id: 2,
-      title: 'TOEIC Certificate',
-      organizer: 'ETS (Educational Testing Service)',
-      date: '11/22/2024',
-      type: 'Language',
-      description: 'The TOEIC (Test of English for International Communication) is a standardized test that measures English language proficiency in a professional context. This certification demonstrates the ability to communicate effectively in English in business, commerce, and industry settings. The test evaluates listening and reading comprehension skills, assessing the candidate\'s ability to understand spoken and written English in workplace scenarios.',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800',
-      credentialCode: 'TOEIC-2024-567890',
-      credentialUrl: '#'
-    },
-    {
-      id: 3,
-      title: 'Junior Web Developer Competency Certification',
-      organizer: 'BNSP (Indonesian Professional Certification Authority)',
-      date: '1/22/2025',
-      type: 'Programming',
-      description: 'This professional competency certification is issued by the Indonesian Professional Certification Authority (BNSP) through Media Informatika Professional Certification Institute. The certification validates competencies in web development including HTML, CSS, JavaScript, responsive design, and modern web development frameworks. It demonstrates proficiency in building functional, accessible, and user-friendly web applications according to industry standards.',
-      image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800',
-      credentialCode: 'BNSP-JWD-2025-112233',
-      credentialUrl: '#'
-    },
-    {
-      id: 4,
-      title: 'React Developer Certification',
-      organizer: 'Meta',
-      date: '08/15/2024',
-      type: 'Programming',
-      description: 'Advanced React certification covering hooks, context, performance optimization, and best practices for building scalable applications. This certification demonstrates expertise in React ecosystem including state management, component lifecycle, custom hooks, and modern React patterns. Participants complete real-world projects and demonstrate proficiency in building production-ready React applications.',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
-      credentialCode: 'META-REACT-2024-445566',
-      credentialUrl: '#'
-    },
-    {
-      id: 5,
-      title: 'AWS Cloud Practitioner',
-      organizer: 'Amazon Web Services',
-      date: '07/10/2024',
-      type: 'Cloud Computing',
-      description: 'Foundational certification demonstrating cloud computing knowledge and AWS services understanding. This certification validates the ability to explain AWS Cloud concepts, AWS services, security, architecture, pricing, and support. It covers core AWS services including compute, network, databases, and storage, as well as AWS deployment and operation best practices.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800',
-      credentialCode: 'AWS-CP-2024-778899',
-      credentialUrl: '#'
-    },
-    {
-      id: 6,
-      title: 'Mobile App Development with Flutter',
-      organizer: 'Google',
-      date: '06/05/2024',
-      type: 'Mobile Development',
-      description: 'Comprehensive certification in Flutter framework for building cross-platform mobile applications. This certification covers Flutter fundamentals, widget composition, state management, navigation, API integration, and deployment to both iOS and Android platforms. Participants demonstrate proficiency in building beautiful, natively compiled applications from a single codebase.',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800',
-      credentialCode: 'GOOGLE-FLUTTER-2024-990011',
-      credentialUrl: '#'
-    }
-  ];
+  const certifications = certificationsData;
 
   const certification = certifications.find(c => c.id === parseInt(id));
 

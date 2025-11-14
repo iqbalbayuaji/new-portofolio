@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { PiCertificateFill } from 'react-icons/pi';
+import { certificationsData } from '../data/certificationsData';
 
 const CertificationsPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,69 +25,7 @@ const CertificationsPage = () => {
       }
     };
   }, []);
-
-  const certifications = [
-    {
-      id: 1,
-      title: 'AI Productivity and AI API Integration for Developers',
-      issuer: 'Hacktiv8',
-      date: '10/30/2024',
-      category: 'Programming',
-      description: 'AI Productivity and AI API Integration for Developers from Hacktiv8',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-      link: '#'
-    },
-    {
-      id: 2,
-      title: 'TOEIC Certificate',
-      issuer: 'ETS',
-      date: '11/22/2024',
-      category: 'Language',
-      description: 'This Official TOEIC Listening and Reading Score Certificate, issued by ETS (Educational Testing Service), is awarded to Muhammad Iqbal Bayuaji in recognition of English language proficiency.',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800',
-      link: '#'
-    },
-    {
-      id: 3,
-      title: 'Junior Web Developer Competency Certification',
-      issuer: 'BNSP',
-      date: '1/22/2025',
-      category: 'Programming',
-      description: 'This Certificate of Competence, issued by the Indonesian Professional Certification Authority (BNSP) through Media Informatika Professional Certification Institute.',
-      image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800',
-      link: '#'
-    },
-    {
-      id: 4,
-      title: 'React Developer Certification',
-      issuer: 'Meta',
-      date: '08/15/2024',
-      category: 'Programming',
-      description: 'Advanced React certification covering hooks, context, performance optimization, and best practices for building scalable applications.',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
-      link: '#'
-    },
-    {
-      id: 5,
-      title: 'AWS Cloud Practitioner',
-      issuer: 'Amazon Web Services',
-      date: '07/10/2024',
-      category: 'Cloud Computing',
-      description: 'Foundational certification demonstrating cloud computing knowledge and AWS services understanding.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800',
-      link: '#'
-    },
-    {
-      id: 6,
-      title: 'Mobile App Development with Flutter',
-      issuer: 'Google',
-      date: '06/05/2024',
-      category: 'Mobile Development',
-      description: 'Comprehensive certification in Flutter framework for building cross-platform mobile applications.',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800',
-      link: '#'
-    }
-  ];
+  const certifications = certificationsData;
 
   return (
     <div style={{

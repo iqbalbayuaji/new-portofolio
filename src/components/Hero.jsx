@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -6,6 +7,7 @@ const Hero = () => {
   const [animationState, setAnimationState] = useState('enter'); // 'enter', 'visible', 'exit'
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
 
   const welcomeTexts = [
     'WELCOME',      
@@ -238,6 +240,7 @@ const Hero = () => {
               transition: 'all 0.3s',
               fontSize: '1rem'
             }}
+            onClick={() => navigate('/projects')}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#e5e5e5';
               e.currentTarget.querySelector('svg').style.transform = 'translateX(4px)';
@@ -273,6 +276,7 @@ const Hero = () => {
               transition: 'all 0.3s',
               fontSize: '1rem'
             }}
+            onClick={() => window.open('https://drive.google.com/drive/folders/1CfObwhAnGDb_bWAvu0VAZw7ZeMPJpPyH?usp=sharing', '_blank', 'noopener,noreferrer')}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#fff';
               e.currentTarget.style.color = '#000';

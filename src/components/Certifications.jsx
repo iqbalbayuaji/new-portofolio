@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { PiCertificateFill } from 'react-icons/pi';
+import { certificationsData } from '../data/certificationsData';
 
 const Certifications = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,33 +29,30 @@ const Certifications = () => {
   const certifications = [
     {
       id: 1,
-      title: 'AI Productivity and AI API Integration for Developers',
-      issuer: 'Hilmi',
-      date: '10/30/2025',
+      title: 'FUSIONTECH 2025 - Web Design Competition, 3rd Place Winner',
+      date: '20/03/2025',
       category: 'Programming',
-      description: 'AI Productivity and AI API Integration for Developers from Hacktiv8',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-      link: '#'
+      description: 'FusionTech 2025 adalah perlombaan tingkat nasional yang diselenggarakan oleh Universitas Teknologi Yogyakarta pada Maret 2025.',
+      image: '/images/s_fusiontech.png',
+      link: 'https://drive.google.com/file/d/1zDU2d_KFCZ_Vve-ENakE2uUT-6vyhr9v/view?usp=sharing'
     },
     {
       id: 2,
-      title: 'TOEIC Certificate',
-      issuer: 'Hilmi',
-      date: '11/22/2024',
-      category: 'Language',
-      description: 'This Official TOEIC Listening and Reading Score Certificate, issued by ETS (Educational Testing Service), is awarded to Hilmi Farrel Fijatullah in...',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800',
-      link: '#'
+      title: 'BNSP - Junior Mobile Programmer',
+      date: '24/01/2025',
+      category: 'programming',
+      description: 'Saya mengikuti program Bootcamp DigiUp yang diadakan oleh Telkom',
+      image: '/images/s_bnsp.png',
+      link: 'https://drive.google.com/file/d/1KJtoVQagVnraj1uP9bH9FOCIj6enOwZ2/view?usp=sharing'
     },
     {
       id: 3,
-      title: 'Junior Web Developer Competency Certification',
-      issuer: 'Hilmi',
-      date: '1/22/2025',
+      title: 'DigiUp 2024 - Telkom DigiUp 2024 - Mobile Apps Developer',
+      date: '4/11/2024',
       category: 'Programming',
-      description: 'This Certificate of Competence, issued by the Indonesian Professional Certification Authority (BNSP) through Media Informatika Professional...',
-      image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800',
-      link: '#'
+      description: 'DigiUp 2024 adalah program Bootcamp yang diadakan oleh Telkom, disini saya diajari hal - hal tentang Mobile Developer menggunakan Framework Flutter',
+      image: '/images/s_digiup.png',
+      link: 'https://drive.google.com/file/d/1vWyfvXlmiJNmPoFIsV8ddrAeV5dN1GrF/view?usp=drive_link'
     }
   ];
 
@@ -182,7 +180,7 @@ const Certifications = () => {
                   position: 'absolute',
                   top: '1rem',
                   right: '1rem',
-                  backgroundColor: cert.category === 'Programming' ? '#3b82f6' : '#10b981',
+                  backgroundColor: '#3b82f6',
                   color: '#fff',
                   padding: '0.375rem 0.875rem',
                   borderRadius: '9999px',
@@ -236,8 +234,8 @@ const Certifications = () => {
                     {cert.date}
                   </p>
 
-                  <a
-                    href={cert.link}
+                  <Link
+                    to={`/certifications/${cert.id}`}
                     style={{
                       backgroundColor: 'rgba(59, 130, 246, 0.1)',
                       color: '#60a5fa',
@@ -259,7 +257,7 @@ const Certifications = () => {
                     }}
                   >
                     View Details →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

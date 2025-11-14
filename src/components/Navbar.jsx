@@ -25,14 +25,15 @@ const Navbar = () => {
         justifyContent: 'space-between'
       }}>
         {/* Logo */}
-        <div style={{
+        <Link to="/" style={{
           fontSize: '1.25rem',
           fontWeight: 'bold',
           letterSpacing: '0.1em',
-          color: '#fff'
+          color: '#fff',
+          textDecoration: 'none'
         }}>
           IQBAL PORTFOLIO
-        </div>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <div style={{
